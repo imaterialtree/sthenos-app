@@ -14,6 +14,8 @@ class Instrutor extends Model
 
     protected $table = 'instrutores';
 
+    public $timestamps = false;
+
     /* 
     * Relacionamentos
     */

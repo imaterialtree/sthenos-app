@@ -12,6 +12,8 @@ class Qualificacao extends Model
 
     protected $table = 'qualificacoes';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'nome',
         'nivel',

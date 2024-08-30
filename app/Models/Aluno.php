@@ -13,6 +13,8 @@ class Aluno extends Model
 
     protected $table = 'alunos';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'data_nascimento',
         'peso',
