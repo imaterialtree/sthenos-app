@@ -12,6 +12,8 @@ class GrupoMuscular extends Model
 
     protected $table = 'grupos_musculares';
 
+    public $timestamps = false;
+
     protected $fillabel = [
         'nome',
     ];

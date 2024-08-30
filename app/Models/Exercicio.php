@@ -12,6 +12,8 @@ class Exercicio extends Model
 
     protected $table = 'exercicios';
 
+    public $timestamps = false;
+
     protected $fillabel = [
         'nome',
         'descricao',
