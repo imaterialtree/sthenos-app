@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('tipo');
-            $table->string('foto');
+            $table->string('foto')->nullable();
         });
 
         Schema::create('alunos', function (Blueprint $table) {
@@ -22,7 +22,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->date('data_nascimento');
             $table->decimal('peso', 3, 2);
-            $table->decimal('altura', 3, 2);
+            $table->integer('altura');
         });
 
         Schema::create('instrutores', function (Blueprint $table) {
@@ -54,9 +54,9 @@ return new class extends Migration
             $table->dropColumn('foto');
         });
         // Dropar tabelas criadas
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('instrutor_qualificacao');
         Schema::dropIfExists('instrutores');
         Schema::dropIfExists('qualificacoes');
-        Schema::dropIfExists('instrutor_qualificacao');
+        Schema::dropIfExists('alunos');
     }
 };

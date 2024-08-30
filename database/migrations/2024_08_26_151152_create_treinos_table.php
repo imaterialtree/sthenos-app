@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nome');
             $table->text('descricao');
             $table->foreignId('instrutor_id')->constrained('instrutores');
-            $table->timestamps();
+            $table->timestamp('criado_em');
+            $table->timestamp('atualizado_em');
         });
 
         Schema::create('aluno_treino', function (Blueprint $table) {
@@ -24,23 +25,24 @@ return new class extends Migration
             $table->foreignId('treino_id')->constrained('treinos')->cascadeOnDelete();
             $table->integer('exercicios_feitos');
             $table->integer('exercicios_totais');
-            $table->timestamps();
+            $table->timestamp('criado_em');
+            $table->timestamp('atualizado_em');
+            $table->timestamp('finalizado_em')->nullable();
         });
 
         Schema::create('exercicios', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->text('descricao');
-            $table->string('imagem');
-            $table->string('video');
-            $table->string('equipamento');
+            $table->string('imagem')->nullable();
+            $table->string('video')->nullable();
+            $table->string('equipamento')->nullable();
         });
 
         Schema::create('exercicio_treino', function (Blueprint $table) {
             $table->foreignId('exercicio_id')->constrained('exercicios')->cascadeOnDelete();
             $table->foreignId('treino_id')->constrained('treinos')->cascadeOnDelete();
-            $table->integer('series');
-            $table->integer('repeticoes');
+            $table->integer('series')->default(1);
         });
 
         Schema::create('grupos_musculares', function (Blueprint $table) {
@@ -51,7 +53,7 @@ return new class extends Migration
         Schema::create('exercicio_grupo_muscular', function (Blueprint $table) {
             $table->foreignId('exercicio_id')->constrained('exercicios')->cascadeOnDelete();
             $table->foreignId('grupo_muscular_id')->constrained('grupos_musculares')->cascadeOnDelete();
-            $table->integer('intensidade');
+            $table->integer('intensidade')->default(2);
         });
     }
 
@@ -60,11 +62,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('treinos');
         Schema::dropIfExists('aluno_treino');
-        Schema::dropIfExists('exercicios');
-        Schema::dropIfExists('exercicio_treino');
-        Schema::dropIfExists('grupos_musculares');
         Schema::dropIfExists('exercicio_grupo_muscular');
+        Schema::dropIfExists('exercicio_treino');
+        Schema::dropIfExists('treinos');
+        Schema::dropIfExists('exercicios');
+        Schema::dropIfExists('grupos_musculares');
     }
 };
