@@ -51,7 +51,7 @@ return new class extends Migration
         Schema::create('exercicio_grupo_muscular', function (Blueprint $table) {
             $table->foreignId('exercicio_id')->constrained('exercicios')->cascadeOnDelete();
             $table->foreignId('grupo_muscular_id')->constrained('grupos_musculares')->cascadeOnDelete();
-            $table->intensidade();
+            $table->integer('intensidade');
         });
     }
 
