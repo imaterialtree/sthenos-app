@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('tipo');
+            $table->integer('tipo')->nullable();
             $table->string('foto')->nullable();
         });
 
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')
                 ->onDelete('cascade');
             $table->date('data_nascimento');
-            $table->decimal('peso', 3, 2);
+            $table->decimal('peso', 5, 2);
             $table->integer('altura');
         });
 
@@ -34,7 +34,7 @@ return new class extends Migration
         Schema::create('qualificacoes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('nivel');
+            $table->string('nivel')->nullable();
         });
 
         Schema::create('instrutor_qualificacao', function (Blueprint $table) {
