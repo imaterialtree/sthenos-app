@@ -26,4 +26,26 @@ class AlunoTreino extends Pivot
 
         return 0;
     }
+
+    public static function fake(): array
+    {
+        $feitos = fake()->numberBetween(0, 15);
+        $totais = fake()->numberBetween(10, 20);
+
+        if ($feitos > $totais) {
+            $feitos = $totais;
+        }
+
+        if ($feitos == $totais) {
+            $finalizado_em = fake()->dateTimeBetween(now()->subDays(30), now());
+        } else {
+            $finalizado_em = null;
+        }
+
+        return [
+            'exercicios_feitos' => $feitos,
+            'exercicios_totais' => $totais,
+            'finalizado_em' => $finalizado_em,
+        ];
+    }
 }
