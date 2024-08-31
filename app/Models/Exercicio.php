@@ -12,7 +12,7 @@ class Exercicio extends Model
 
     protected $table = 'exercicios';
 
-    protected $fillabel = [
+    protected $fillable = [
         'nome',
         'descricao',
         'imagem',

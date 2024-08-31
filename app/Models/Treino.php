@@ -13,7 +13,7 @@ class Treino extends Model
 
     protected $table = 'treinos';
 
-    protected $fillabel = [
+    protected $fillable = [
         'nome',
         'descricao',
     ];

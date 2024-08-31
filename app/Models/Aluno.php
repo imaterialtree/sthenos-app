@@ -13,7 +13,7 @@ class Aluno extends Model
 
     protected $table = 'alunos';
 
-    protected $fillabel = [
+    protected $fillable = [
         'data_nascimento',
         'peso',
         'altura',

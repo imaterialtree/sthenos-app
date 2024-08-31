@@ -12,7 +12,7 @@ class Qualificacao extends Model
 
     protected $table = 'qualificacoes';
 
-    protected $fillabel = [
+    protected $fillable = [
         'nome',
         'nivel',
     ];

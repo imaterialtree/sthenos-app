@@ -12,7 +12,7 @@ class GrupoMuscular extends Model
 
     protected $table = 'grupos_musculares';
 
-    protected $fillabel = [
+    protected $fillable = [
         'nome',
     ];
 
