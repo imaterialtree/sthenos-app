@@ -15,7 +15,7 @@
     </div>
     <div class="row bg-black py-2">
         <div class="col-12">
-            @include('partials.nav')
+            @include('layouts.navigation')
         </div>
     </div>
 </header>

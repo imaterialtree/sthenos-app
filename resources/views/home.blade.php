@@ -1,4 +1,6 @@
-<x-template-layout>
+@extends('layouts.app')
+
+@section('content')
     <div class="row align-items-center">
         <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
             @if ($message = Session::get('success'))
@@ -27,4 +29,4 @@
             <img src="/img/img-home.jpg" alt="Imagem">
         </div>
     </div>
-</x-template-layout>
+@endsection
