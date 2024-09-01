@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Aluno;
+use App\Models\Instrutor;
+use App\Models\Qualificacao;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $qualificacoes = Qualificacao::all();
+        return view('auth.register', compact('qualificacoes'));
     }
 
     /**
@@ -27,19 +31,43 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)//: RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'tipoUsuario' => ['required', 'in:aluno,instrutor'],
         ]);
-
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        if ($request->tipoUsuario === 'aluno') {
+            $request->validate([
+                'dataNascimento' => 'required|date',
+                'peso' => 'required|numeric',
+                'altura' => 'required|numeric',
+            ]);
+
+            $user->aluno->create([
+                'dataNascimento' => $request->dataNascimento,
+                'peso' => $request->peso,
+                'altura' => $request->altura,
+            ]);
+        } else { // tipoUsuario = instrutor
+            $request->validate([
+                'qualificacoes' => 'required|array|min:1',
+                'qualificacoes.*' => 'integer|exists:qualificacoes,id',
+            ]);
+
+            $instrutor = $user->instrutor()->create();
+            $qualificacoesIds = $request->input('qualificacoes', []);
+            $instrutor->qualificacoes()->attach($qualificacoesIds);
+        }
 
         event(new Registered($user));
 

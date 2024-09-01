@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Entrar') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -51,7 +51,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember me') }}
+                                        {{ __('Lembrar de mim') }}
                                     </label>
                                 </div>
                             </div>
@@ -60,17 +60,24 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Log in') }}
+                                    {{ __('Entrar') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
+                                        {{ __('Esqueceu sua senha?') }}
                                     </a>
                                 @endif
                             </div>
                         </div>
                     </form>
+                    <div class="row mt-2">
+                        <div class="col-md-8 offset-md-4">
+                            <a class="btn btn-link ps-0" href="{{ route('register') }}">
+                                {{ __('Novo por aqui? Crie uma conta') }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

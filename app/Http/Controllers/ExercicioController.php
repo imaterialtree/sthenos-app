@@ -44,7 +44,7 @@ class ExercicioController extends Controller
 
         $exercicio->storeArquivo($request->file('imagem'), 'imagem');
         $exercicio->storeArquivo($request->file('video'), 'video');
-        return redirect()->route('home')->with('status', 'success');
+        return redirect()->route('home')->with('success', 'Exercício criado com sucesso!');
     }
 
     /**
