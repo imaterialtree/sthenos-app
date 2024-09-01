@@ -20,6 +20,8 @@ return new class extends Migration
             ['nome' => 'Nutrição', 'nivel' => 'Graduação'],
             ['nome' => 'Educação Física', 'nivel' => 'Graduação'],
             ['nome' => 'Musculação', 'nivel' => 'Nível 3'],
+            ['nome' => 'Instrutor de Yoga', 'nivel' => 'Nível 3'],
+            ['nome' => 'Instrutor de Pilates', 'nivel' => 'Nível 3'],
         ]);
 
         DB::table('grupos_musculares')->insert([

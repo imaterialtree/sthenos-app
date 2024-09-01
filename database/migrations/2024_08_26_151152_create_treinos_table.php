@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->text('descricao');
-            $table->foreignId('instrutor_id')->constrained('instrutores');
+            $table->foreignId('instrutor_id')->constrained('instrutores')->nullOnDelete();
             $table->timestamp('criado_em');
             $table->timestamp('atualizado_em');
         });

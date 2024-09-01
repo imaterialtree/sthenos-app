@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
             $table->date('data_nascimento');
             $table->decimal('peso', 5, 2);
             $table->integer('altura');
@@ -28,7 +28,7 @@ return new class extends Migration
         Schema::create('instrutores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
 
         Schema::create('qualificacoes', function (Blueprint $table) {
@@ -38,8 +38,8 @@ return new class extends Migration
         });
 
         Schema::create('instrutor_qualificacao', function (Blueprint $table) {
-            $table->foreignId('instrutor_id')->constrained('instrutores');
-            $table->foreignId('qualificacao_id')->constrained('qualificacoes');
+            $table->foreignId('instrutor_id')->constrained('instrutores')->cascadeOnDelete();
+            $table->foreignId('qualificacao_id')->constrained('qualificacoes')->cascadeOnDelete();
         });
     }
 
