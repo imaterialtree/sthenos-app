@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->text('descricao');
-            $table->foreignId('instrutor_id')->constrained('instrutores')->nullOnDelete();
-            $table->timestamp('criado_em');
-            $table->timestamp('atualizado_em');
+            $table->foreignId('instrutor_id')->constrained('instrutores'); //->nullOnDelete();
+            // $table->timestamp('criado_em');
+            // // $table->timestamp('atualizado_em');
         });
 
         Schema::create('aluno_treino', function (Blueprint $table) {
@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer('exercicios_feitos');
             $table->integer('exercicios_totais');
             $table->timestamp('criado_em');
-            $table->timestamp('atualizado_em');
-            $table->timestamp('finalizado_em')->nullable();
+            // $table->timestamp('atualizado_em');
+            // $table->timestamp('finalizado_em')->nullable();
         });
 
         Schema::create('exercicios', function (Blueprint $table) {

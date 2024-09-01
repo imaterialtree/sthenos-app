@@ -18,7 +18,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/exercicio/create', [ExercicioController::class, 'create'])->name('exercicio.create');
-Route::post('/exercicio', [ExercicioController::class, 'store'])->name('exercicio.store');
+Route::get('/exercicio', [ExercicioController::class, 'index'])->name('exercicio.index')->middleware('auth');
+Route::get('/exercicio/create', [ExercicioController::class, 'create'])->name('exercicio.create')->middleware('auth');
+Route::post('/exercicio', [ExercicioController::class, 'store'])->name('exercicio.store')->middleware('auth');
+Route::get('/exercicio/edit/{id}', [ExercicioCOntroller::class, 'edit'])->name('exercicio.edit')->middleware('auth');
+Route::put('/exercicio/update/{id}', [ExercicioController::class, 'update'])->name('exercicio.update')->middleware('auth');
+Route::get('/exercicio/show/{id}', [ExercicioCOntroller::class, 'show'])->name('exercicio.show')->middleware('auth');
+Route::delete('/exercicio/destroy/{id}', [ExercicioController::class, 'destroy'])->name('exercicio.destroy')->middleware('auth');
 
 require __DIR__.'/auth.php';
