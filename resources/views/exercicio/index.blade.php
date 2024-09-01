@@ -1,6 +1,6 @@
 <x-template-layout>
     @if ($message = Session::get('success'))
-        <div class="alert alert-dark" role="alert">
+        <div class="alert alert-success" role="alert">
             {{ $message }}
         </div>
     @endif
@@ -34,7 +34,7 @@
                     <tbody>
                         @foreach ($exercicios as $exercicio)
                             <tr>
-                                <td scope="row">{{ $loop->index + 1 }}</td>
+                                <td scope="row">{{ $exercicio->id }}</td>
                                 <td>{{ $exercicio->nome }}</td>
                                 <td>{{ $exercicio->descricao }}</td>
                                 @if ($exercicio->equipamento)
@@ -43,16 +43,11 @@
                                     <td>Sem necessidade de equipamentos.</td>
                                 @endif
                                 <td>
-
-                                    <form action="{{ route('exercicio.destroy', $exercicio->id) }}" method="POST">
-                                        <a href="{{ route('exercicio.edit', $exercicio->id) }}"
-                                            class="me-2 btn btn-outline-dark"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('exercicio.show', $exercicio->id) }}"
-                                            class="me-2 btn btn-outline-info"><i class="bi bi-eye"></i></a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                    </form>
+                                    <a href="{{ route('exercicio.edit', $exercicio->id) }}"
+                                        class="me-2 btn btn-outline-dark"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="{{ route('exercicio.show', $exercicio->id) }}"
+                                        class="me-2 btn btn-outline-info"><i class="bi bi-eye"></i></a>
+                                    @include('exercicio.partials.delete-exercicio-form')
                                 </td>
                             </tr>
                         @endforeach
