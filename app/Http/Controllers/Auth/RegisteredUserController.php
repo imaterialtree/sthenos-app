@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'tipoUsuario' => ['required', 'in:aluno,instrutor'],
         ]);
         
-        $user = User::create([
+        $user = User::make([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             ]);
 
             $user->tipo = User::ALUNO;
+            $user->save();
             $user->aluno->create([
                 'dataNascimento' => $request->dataNascimento,
                 'peso' => $request->peso,
@@ -64,6 +65,7 @@ class RegisteredUserController extends Controller
             ]);
             
             $user->tipo = User::INSTRUTOR;
+            $user->save();
             $instrutor = $user->instrutor()->create();
             $qualificacoesIds = $request->input('qualificacoes', []);
             $instrutor->qualificacoes()->attach($qualificacoesIds);
