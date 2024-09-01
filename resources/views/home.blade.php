@@ -3,11 +3,6 @@
 @section('content')
     <div class="row align-items-center">
         <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-sucess">
-                    {{ $message }}
-                </div>
-            @endif
             <h4>
                 Por que treinar
             </h4>
