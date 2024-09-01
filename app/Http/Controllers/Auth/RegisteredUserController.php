@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Aluno;
-use App\Models\Instrutor;
 use App\Models\Qualificacao;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -31,7 +29,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)//: RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -53,6 +51,7 @@ class RegisteredUserController extends Controller
                 'altura' => 'required|numeric',
             ]);
 
+            $user->tipo = User::ALUNO;
             $user->aluno->create([
                 'dataNascimento' => $request->dataNascimento,
                 'peso' => $request->peso,
@@ -63,7 +62,8 @@ class RegisteredUserController extends Controller
                 'qualificacoes' => 'required|array|min:1',
                 'qualificacoes.*' => 'integer|exists:qualificacoes,id',
             ]);
-
+            
+            $user->tipo = User::INSTRUTOR;
             $instrutor = $user->instrutor()->create();
             $qualificacoesIds = $request->input('qualificacoes', []);
             $instrutor->qualificacoes()->attach($qualificacoesIds);

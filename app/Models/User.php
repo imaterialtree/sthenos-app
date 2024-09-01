@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    const ALUNO = 2;
+    const INSTRUTOR = 1;
+
+
     /**
      * The attributes that are mass assignable.
      *
