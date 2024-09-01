@@ -1,15 +1,15 @@
 <div class="card">
-    <div class="card-header">{{ __('Delete Account') }}</div>
+    <div class="card-header">{{ __('Excluir Conta') }}</div>
 
     <div class="card-body">
         <div class="mb-3">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+            {{ __('Após a exclusão da sua conta, todos os seus recursos e dados serão permanentemente apagados. Antes de excluir sua conta, faça o download de quaisquer dados ou informações que deseje manter.') }}
         </div>
 
         <div class="row mb-0">
             <div class="col-md-6">
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                    {{ __('Delete Account') }}
+                    {{ __('Excluir Conta') }}
                 </button>
             </div>
         </div>
@@ -28,6 +28,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
+            {{ __('Após a exclusão da sua conta, todos os seus recursos e dados serão permanentemente apagados. Por favor, digite sua senha para confirmar que você deseja excluir permanentemente sua conta.') }}
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
         </div>
         <form id="deleteAccountForm" method="post" action="{{ route('profile.destroy') }}" class="p-6">
@@ -35,7 +36,7 @@
             @method('delete')
 
             <div>
-                <input type="password" class="form-control @error('password', 'userDeletion') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required>
+                <input type="password" class="form-control @error('password', 'userDeletion') is-invalid @enderror" name="password" placeholder="{{ __('Senha') }}" required>
 
                 @error('password', 'userDeletion')
                     <span class="invalid-feedback" role="alert">
@@ -47,10 +48,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            {{ __('Cancel') }}
+            {{ __('Cancelar') }}
         </button>
         <button type="submit" class="btn btn-danger" form="deleteAccountForm">
-            {{ __('Delete Account') }}
+            {{ __('Excluir Conta') }}
         </button>
       </div>
     </div>
