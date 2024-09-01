@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class Exercicio extends Model
@@ -40,7 +41,13 @@ class Exercicio extends Model
         return $this->belongsToMany(Treino::class)->withPivot('repeticoes');
     }
 
-    public function storeArquivo(\Illuminate\Http\UploadedFile $arquivo, string $tipo)
+    /**
+     * Armazena uma imagem ou um video no storage e na model
+     * 
+     * @param UploadedFile $arquivo
+     * @param string $tipo {'imagem', 'video'}
+     */
+    public function storeArquivo(UploadedFile $arquivo, string $tipo)
     {
         if (! in_array($tipo,  ['imagem', 'video']) || ! $arquivo) {
             return;
