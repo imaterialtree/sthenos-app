@@ -1,4 +1,4 @@
-<footer class="container-fluid bg-black">
+<footer class="container-fluid bg-black mt-auto">
     <div class="row py-3 align-items-center">
         <div class="col-3"></div>
         <div class="col-6 text-center text-center">

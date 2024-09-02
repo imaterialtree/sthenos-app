@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                <a class="nav-link active text-white" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
                 <a class="nav-link text-white" href="#">Features</a>
                 <a class="nav-link text-white" href="#">Pricing</a>
             </ul>
@@ -19,6 +19,7 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 @auth
+                {{-- Gerenciar --}}
                 @if (Auth::user()->instrutor)
                 <li class="navbar-nav">
                     <a class="nav-link text-white" href="{{ route('exercicio.index') }}">Exercicios</a>
@@ -27,6 +28,7 @@
                     <a class="nav-link text-white" href="{{ route('treino.index') }}">Treinos</a>
                 </li>
                 @endif
+                {{-- Dropdown profile --}}
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}

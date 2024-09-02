@@ -9,7 +9,7 @@
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         @include('partials.header')
 
         <main class="container my-5">

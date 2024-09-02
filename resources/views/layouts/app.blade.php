@@ -19,7 +19,7 @@
     @stack('styles')
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     @include('partials.header')
 
     <main class="container py-4">
