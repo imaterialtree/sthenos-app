@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercicio;
 use App\Models\Treino;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class TreinoController extends Controller
@@ -31,11 +32,15 @@ class TreinoController extends Controller
      */
     public function store(Request $request)
     {
+        $user = $request->user();
+        if (! $user->instrutor) {
+            return redirect()->back()->with('error', 'Usuário não permitido');
+        }
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
         ]);
-        $treino = Treino::create([
+        $treino = $user->instrutor->treinos()->create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'exercicios' => 'required|array|min:1',

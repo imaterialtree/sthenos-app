@@ -4,7 +4,7 @@
             <img src="/img/sthenos-logo.svg" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+            <i class="bi bi-list text-white"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,9 +19,12 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 @auth
-                @if (Auth::user()::INSTRUTOR)
+                @if (Auth::user()->instrutor)
                 <li class="navbar-nav">
                     <a class="nav-link text-white" href="{{ route('exercicio.index') }}">Exercicios</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link text-white" href="{{ route('treino.index') }}">Treinos</a>
                 </li>
                 @endif
                 <li class="nav-item dropdown">
