@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class AlunoController extends Controller
 {
-    public function update(Request $request, $aluno)
+    public function update(Request $request, $id)
     {
-        $aluno = Aluno::find($aluno);
+        $aluno = Aluno::find($id);
         $validated = $request->validate([
             'data_nascimento' => 'required|date',
             'peso' => 'required|numeric|decimal:0,2',
