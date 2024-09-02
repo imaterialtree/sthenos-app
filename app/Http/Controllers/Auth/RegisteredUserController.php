@@ -53,8 +53,8 @@ class RegisteredUserController extends Controller
 
             $user->tipo = User::ALUNO;
             $user->save();
-            $user->aluno->create([
-                'dataNascimento' => $request->dataNascimento,
+            $user->aluno()->create([
+                'data_nascimento' => $request->dataNascimento,
                 'peso' => $request->peso,
                 'altura' => $request->altura,
             ]);

@@ -88,7 +88,9 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="peso" class="col-md-4 col-form-label text-md-end">Peso (kg)</label>
-                                <div class="col-md-6"><input type="number" class="form-control" id="peso" placeholder="Digite seu peso" name="peso" value="{{ old('peso')}}"></div>
+                                <div class="col-md-6">
+                                    <input type="number"  min="0" step="0.01" class="form-control" id="peso" placeholder="Digite seu peso" name="peso" value="{{ old('peso')}}">
+                                </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="altura" class="col-md-4 col-form-label text-md-end">Altura (cm)</label>

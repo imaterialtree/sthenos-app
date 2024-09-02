@@ -11,11 +11,11 @@
             <div class="mb-4">
                 @include('profile.partials.update-password-form')
             </div>
-            <div>
-                @include('profile.partials.delete-user-form')
+            <div class="mb-4">
+                @include('profile.partials.update-aluno-form')
             </div>
             <div>
-                @include('profile.partials.update-aluno-form')
+                @include('profile.partials.delete-user-form')
             </div>
         </div>
     </div>
