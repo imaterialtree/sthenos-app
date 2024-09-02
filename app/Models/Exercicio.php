@@ -52,9 +52,14 @@ class Exercicio extends Model
         if (! in_array($tipo,  ['imagem', 'video']) || ! $arquivo) {
             return;
         }
+        $oldFile = $this->$tipo;
 
         $path = $arquivo->store("exercicio/$tipo", 'public');
         $this->$tipo = Storage::url($path);
         $this->save();
+        
+        if ($oldFile) {
+            Storage::delete($oldFile); // deleta o antigo arquivo
+        }
     }
 }
