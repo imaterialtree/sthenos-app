@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ExercicioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TreinoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +21,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('exercicio', ExercicioController::class)->middleware('auth');
+Route::patch('aluno/{aluno}', [AlunoController::class, 'update'])->middleware('auth')->name('aluno.update');
 
 require __DIR__.'/auth.php';
