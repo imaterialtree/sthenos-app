@@ -42,7 +42,7 @@ return new class extends Migration
         Schema::create('exercicio_treino', function (Blueprint $table) {
             $table->foreignId('exercicio_id')->constrained('exercicios')->cascadeOnDelete();
             $table->foreignId('treino_id')->constrained('treinos')->cascadeOnDelete();
-            $table->integer('series')->default(1);
+            $table->integer('repeticoes')->default(1);
         });
 
         Schema::create('grupos_musculares', function (Blueprint $table) {

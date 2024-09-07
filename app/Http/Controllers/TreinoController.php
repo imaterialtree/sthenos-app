@@ -57,7 +57,7 @@ class TreinoController extends Controller
 
         // Salvar exercícios no treino
         foreach ($request->exercicios as $exercicio) {
-            $treino->exercicios()->attach($exercicio['id'], ['series' => $exercicio['repeticoes']]);
+            $treino->exercicios()->attach($exercicio['id'], ['repeticoes' => $exercicio['repeticoes']]);
         }
 
         return redirect()->route('treino.index')->with('success', 'Treino criado com sucesso!');
