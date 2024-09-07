@@ -36,17 +36,29 @@ class TreinoController extends Controller
         if (! $user->instrutor) {
             return redirect()->back()->with('error', 'Usuário não permitido');
         }
+
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
+            'exercicios' => 'required|array|min:1',
+            'exercicios.*.id' => 'integer|exists:exercicios,id',
+            'exercicios.*.repeticoes' => 'integer|min:1',
+        ], [
+            'exercicios.required' => 'Você precisa selecionar pelo menos um exercício.',
+            'exercicios.*.id.exists' => 'Que estranho. Um dos exercícios selecionados não existe no banco de dados. Tente novamente.',
+            'exercicios.*.repeticoes.required' => 'Você deve especificar o número de repetições para cada exercício.',
+            'exercicios.*.repeticoes.min' => 'O número mínimo de repetições é 1.',
         ]);
+
         $treino = $user->instrutor->treinos()->create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'exercicios' => 'required|array|min:1',
-            'exercicios.*' => 'integer|exists:exercicios,id',
         ]);
-        $treino->exercicios()->attach($request->input('exercicios', []));
+
+        // Salvar exercícios no treino
+        foreach ($request->exercicios as $exercicio) {
+            $treino->exercicios()->attach($exercicio['id'], ['series' => $exercicio['repeticoes']]);
+        }
 
         return redirect()->route('treino.index')->with('success', 'Treino criado com sucesso!');
     }
