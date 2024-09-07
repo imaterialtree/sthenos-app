@@ -9,15 +9,13 @@
             <h1>Treinos</h1>
         </div>
         <div class="col-6">
-            <div>
-                <a href="{{ route('treino.create') }}">
-                    <button class="btn btn-danger d-block ms-auto">Criar Treino</button>
-                </a>
-            </div>
+            <button class="btn btn-danger d-block ms-auto px-3" onclick="location.href='{{ route('treino.create') }}'">
+                Criar Treino
+            </button>
         </div>
     </div>
     @if ($treinos->isEmpty())
-        <p>Nenhum treino cadastrado</p>
+        <h4>Nenhum treino cadastrado</h4>
     @else
         <div class="row mb-4">
             <div class="col-12">
