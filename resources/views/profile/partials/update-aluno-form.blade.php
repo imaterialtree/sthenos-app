@@ -16,7 +16,7 @@
                     <input id="dataNascimento" type="date" class="form-control @error('data_nascimento') is-invalid @enderror" name="data_nascimento" 
                         value="{{ $user->aluno->data_nascimento }}" required autofocus autocomplete="data_nascimento">
 
-                    @error('peso')
+                    @error('data_nascimento')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

@@ -31,7 +31,7 @@ class Treino extends Model
 
     public function exercicios(): BelongsToMany
     {
-        return $this->belongsToMany(Exercicio::class)->withPivot('intensidade');
+        return $this->belongsToMany(Exercicio::class)->withPivot('repeticoes');
     }
 
     public function alunos(): BelongsToMany
