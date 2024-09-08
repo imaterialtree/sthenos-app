@@ -68,8 +68,10 @@ class TreinoController extends Controller
      */
     public function show(string $id)
     {
-        $treino = Treino::find($id);
-        return view('treino.show', compact('treino'));
+        $treino = Treino::with('exercicios')->find($id);
+        $exercicios = $treino->exercicios;
+        unset($treino['exercicios']);
+        return view('treino.show', compact('treino', 'exercicios'));
     }
 
     /**
