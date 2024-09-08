@@ -33,7 +33,7 @@ class TreinoController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        if (! $user->instrutor) {
+        if (!$user->instrutor) {
             return redirect()->back()->with('error', 'Usuário não permitido');
         }
 
@@ -79,9 +79,9 @@ class TreinoController extends Controller
      */
     public function edit(string $id)
     {
-        $treino = Treino::find($id);
-        $exercicios = Exercicio::all();
-        return view('treino.edit', compact('treino', 'exercicios'));
+        $treino = Treino::with('exercicios')->find($id);
+        $todosExercicios = Exercicio::all();
+        return view('treino.edit', compact('treino', 'todosExercicios'));
     }
 
     /**
@@ -94,13 +94,20 @@ class TreinoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
             'exercicios' => 'required|array|min:1',
-            'exercicios.*' => 'integer|exists:exercicios,id',
+            'exercicios.*.id' => 'required|exists:exercicios,id',
+            'exercicios.*.repeticoes' => 'required|integer|min:1',
         ]);
-        $treino->fill($validated);
-        $treino->save();
-        $treino->exercicios()->sync($request->input('exercicios', []));
 
-        return redirect()->route('treino.index')->with('success', 'Treino atualizado com sucesso!');
+        $treino->update($validated);
+        // Atualizar exercícios
+        $treino->exercicios()->detach(); // Desanexa todos
+        foreach ($validated['exercicios'] as $exercicio) {
+            $treino->exercicios()->attach($exercicio['id'], ['repeticoes' => $exercicio['repeticoes']]);
+        }
+        // sync não permite repetidos
+        // $treino->exercicios()->sync($exercicios);
+
+        return back()->with('success', 'Treino atualizado com sucesso!');
     }
 
     /**
