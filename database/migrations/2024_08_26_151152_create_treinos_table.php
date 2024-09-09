@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::create('aluno_treino', function (Blueprint $table) {
             $table->foreignId('aluno_id')->constrained('alunos')->cascadeOnDelete();
             $table->foreignId('treino_id')->constrained('treinos')->cascadeOnDelete();
-            $table->integer('exercicios_feitos');
+            $table->integer('exercicios_feitos')->default(0);
             $table->integer('exercicios_totais');
             $table->timestamp('criado_em')->default(now());
             $table->timestamp('atualizado_em')->default(now());

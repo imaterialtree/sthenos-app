@@ -15,9 +15,9 @@
                 <div class="card-footer">
                     <a href="{{ route('treino.show', $treino->id) }}"
                         class="me-2 btn btn-info"><i class="bi bi-eye">{{ __('Ver') }}</i></a>
-                    <button class="btn btn-primary">
+                    <a href="{{ route('aluno.joinTreino', $treino->id) }}" class="btn btn-primary">
                         {{ __('Praticar') }}
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('exercicio', ExercicioController::class)->middleware('auth');
 Route::patch('aluno/{aluno}', [AlunoController::class, 'update'])->middleware('auth')->name('aluno.update');
+Route::get('aluno/{idTreino}/joinTreino', [AlunoController::class, 'joinTreino'])->middleware('auth')->name('aluno.joinTreino');
 Route::resource('treino', TreinoController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';
