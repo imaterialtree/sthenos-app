@@ -20,9 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('exercicio', ExercicioController::class)->middleware('auth');
 Route::patch('aluno/{aluno}', [AlunoController::class, 'update'])->middleware('auth')->name('aluno.update');
 Route::get('aluno/{idTreino}/joinTreino', [AlunoController::class, 'joinTreino'])->middleware('auth')->name('aluno.joinTreino');
-Route::resource('treino', TreinoController::class)->middleware('auth');
+Route::resource('exercicio', ExercicioController::class)->middleware(['auth', 'instrutor']);
+Route::resource('treino', TreinoController::class)->middleware(['auth', 'instrutor']);
 
 require __DIR__.'/auth.php';
