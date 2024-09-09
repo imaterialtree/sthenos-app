@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::patch('aluno/{aluno}', [AlunoController::class, 'update'])->middleware('auth')->name('aluno.update');
+Route::get('aluno/{idTreino}/joinTreino', [AlunoController::class, 'joinTreino'])->middleware('auth')->name('aluno.joinTreino');
 Route::resource('exercicio', ExercicioController::class)->middleware(['auth', 'instrutor']);
 Route::resource('treino', TreinoController::class)->middleware(['auth', 'instrutor']);
 
