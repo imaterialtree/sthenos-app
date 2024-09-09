@@ -38,7 +38,6 @@ Route::prefix('relatorio')->name('relatorio.')->middleware('auth')->group(functi
 // AlunoTreino rotas
 
 Route::prefix('aluno/{aluno}')->name('aluno.treino.')->group(function () {
-    Route::get('treino', [AlunoTreinoController::class, 'index'])->name('index');
     Route::get('treino/{treino}/iniciar', [AlunoTreinoController::class, 'iniciarTreino'])->name('iniciar');
     Route::post('treino/{treino}/concluir-exercicio', [AlunoTreinoController::class, 'concluirExercicio'])->name('concluir-exercicio');
     Route::get('treino/{treino}/proximo-exercicio', [AlunoTreinoController::class, 'proximoExercicio'])->name('proximo-exercicio');

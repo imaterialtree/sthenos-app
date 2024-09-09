@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 
 class AlunoTreinoController extends Controller
 {
-    public function iniciarTreino(Aluno $aluno, Treino $treino)
+    public function iniciarTreino(Aluno $aluno, int $treinoId)
     {
+        $treino = $aluno->treinos->find($treinoId);
         $exercicios = $treino->exercicios;
         $exerciciosFeitos = $treino->pivot->exercicios_feitos;
 
-        return view('aluno.treino-progresso', compact('treino', 'exercicios', 'exerciciosFeitos'));
+        return view('aluno.treino.progresso', compact('treino', 'exercicios', 'exerciciosFeitos'));
     }
 
     public function concluirExercicio(Request $request, Aluno $aluno, Treino $treino)
@@ -46,11 +47,11 @@ class AlunoTreinoController extends Controller
         // Pega o próximo exercício com base nos exercícios feitos
         $proximoExercicio = $exercicios[$treinoPivot->exercicios_feitos];
 
-        return view('aluno.proximo-exercicio', compact('aluno', 'treino', 'proximoExercicio'));
+        return view('aluno.treino.proximo-exercicio', compact('aluno', 'treino', 'proximoExercicio'));
     }
 
     public function treinoConcluido(Aluno $aluno, Treino $treino)
     {
-        return view('aluno.treino-concluido', compact('aluno', 'treino'));
+        return view('aluno.treino.concluido', compact('aluno', 'treino'));
     }
 }

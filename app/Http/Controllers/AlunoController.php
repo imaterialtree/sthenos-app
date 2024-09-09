@@ -42,6 +42,10 @@ class AlunoController extends Controller
         unset($treino['exercicios']);
         $aluno->treinos()->attach($id, ['exercicios_totais' => $treino->exercicios()->count()]);
 
-        return redirect()->route('treino.show', compact('treino', 'exercicios'))->with('success', 'Cadastro em treino realizado com sucesso! Comece já!');
+        return redirect()->route('aluno.treino.iniciar', [
+            'aluno' => $aluno->id,
+            'treino' => $id,
+        ])
+        ->with('success', 'Cadastro em treino realizado com sucesso! Comece já!');
     }
 }
