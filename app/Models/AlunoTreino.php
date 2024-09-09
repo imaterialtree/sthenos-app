@@ -15,7 +15,9 @@ class AlunoTreino extends Pivot
     ];
 
     protected $casts = [
-        'finalizado_em' => 'timestamp',
+        'criado_em' => 'datetime',
+        'atualizado_em' => 'datetime',
+        'finalizado_em' => 'datetime',
     ];
 
     public function progresso() 

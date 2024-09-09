@@ -10,9 +10,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <a class="nav-link active text-white" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
-                <a class="nav-link text-white" href="#">Features</a>
-                <a class="nav-link text-white" href="#">Pricing</a>
+                <a class="nav-link active text-white" aria-current="page" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                <a class="nav-link text-white" href="{{ route('relatorio.index')}}">{{  ('Relatórios') }}</a>
             </ul>
 
             <!-- Right Side Of Navbar -->
