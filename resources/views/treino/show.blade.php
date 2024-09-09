@@ -24,9 +24,12 @@
                     @foreach ($treino->exercicios as $exercicio)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $exercicio->nome }} 
-                            <span class="badge bg-primary rounded-pill">
+                            <span class="badge bg-primary rounded-pill ms-auto me-2">
                                 Repetições: {{ $exercicio->pivot->repeticoes }}
                             </span>
+                            @if (Auth::user()->aluno)
+                            <input class="form-check-input" type="checkbox" name="exercicio">
+                            @endif
                         </li>
                     @endforeach
                 </ul>
@@ -34,12 +37,21 @@
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('treino.edit', $treino->id) }}" class="btn btn-outline-info">
-                <i class="bi bi-pencil-square"></i> Editar Treino
-            </a>
-            <a href="{{ route('treino.index') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Voltar para Lista de Treinos
-            </a>
+            @if (Auth::user()->instrutor)
+                <a href="{{ route('treino.edit', $treino->id) }}" class="btn btn-outline-info">
+                    <i class="bi bi-pencil-square"></i> Editar Treino
+                </a>
+                <a href="{{ route('treino.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista de Treinos
+                </a>
+            @else
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-danger">
+                    <i class="bi bi-check-all"></i> Marcar como concluido
+                </a>
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista de Treinos
+                </a>
+            @endif
         </div>
     </div>
 </div>
