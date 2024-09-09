@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AlunoTreinoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExercicioController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,17 @@ Route::prefix('relatorio')->name('relatorio.')->middleware('auth')->group(functi
     Route::post('aluno-treinos', [RelatorioController::class, 'alunoTreinos'])->name('aluno-treinos');
     Route::get('sistema', [RelatorioController::class, 'sistema'])->name('sistema');
 });
+
+// AlunoTreino rotas
+
+Route::prefix('aluno/{aluno}')->name('aluno.treino.')->group(function () {
+    Route::get('treino', [AlunoTreinoController::class, 'index'])->name('index');
+    Route::get('treino/{treino}/iniciar', [AlunoTreinoController::class, 'iniciarTreino'])->name('iniciar');
+    Route::post('treino/{treino}/concluir-exercicio', [AlunoTreinoController::class, 'concluirExercicio'])->name('concluir-exercicio');
+    Route::get('treino/{treino}/proximo-exercicio', [AlunoTreinoController::class, 'proximoExercicio'])->name('proximo-exercicio');
+    Route::get('treino/{treino}/concluido', [AlunoTreinoController::class, 'treinoConcluido'])->name('treino.concluido');
+});
+
 
 
 require __DIR__.'/auth.php';
